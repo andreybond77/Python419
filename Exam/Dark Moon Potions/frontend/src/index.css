@@ -1,0 +1,1554 @@
+/* ==========================================================================
+   Dark Moon Potions - Полная тема магазина магических зелий
+   ========================================================================== */
+
+:root {
+  /* Основные цвета темы */
+  --potion-purple: #9d4edd;
+  --dark-purple: #1a0033;
+  --moonlight: #c77dff;
+  --blood-red: #6a040f;
+  --dragon-green: #38b000;
+  --phoenix-orange: #ff9e00;
+  --crystal-blue: #4361ee;
+  --shadow-black: #0a0a2a;
+  --glass-bg: rgba(26, 0, 51, 0.7);
+  --glass-border: rgba(157, 78, 221, 0.2);
+  --text-primary: #e6e6ff;
+  --text-secondary: #b8b8d8;
+  --text-muted: #ffd700;
+}
+
+/* ==========================================================================
+   Подключение готических шрифтов
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=MedievalSharp&family=UnifrakturMaguntia&display=swap');
+
+/* ==========================================================================
+   Базовые стили и глобальные шрифты
+   ========================================================================== */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'MedievalSharp', 'Georgia', serif !important;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--shadow-black);
+  color: var(--text-primary);
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+  line-height: 1.6;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(circle at 20% 50%, rgba(157, 78, 221, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(199, 125, 255, 0.05) 0%, transparent 50%),
+    linear-gradient(135deg, var(--shadow-black) 0%, var(--dark-purple) 100%);
+  z-index: -2;
+}
+
+/* ==========================================================================
+   Готические шрифты для всех элементов
+   ========================================================================== */
+
+/* Все заголовки - Cinzel Decorative */
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6,
+.section-title,
+.card-title,
+.modal-title,
+.navbar-brand {
+  font-family: 'Cinzel Decorative', 'Georgia', serif !important;
+  font-weight: 700 !important;
+  letter-spacing: 1.5px !important;
+  text-transform: uppercase !important;
+}
+
+/* Особо важные готические заголовки - UnifrakturMaguntia */
+.gothic-majestic,
+.gothic-title,
+.display-1,
+.display-2,
+.display-3,
+.display-4,
+.display-5,
+.display-6,
+.unifraktur-text {
+  font-family: 'UnifrakturMaguntia', 'Cinzel Decorative', 'Georgia', serif !important;
+  letter-spacing: 2px !important;
+  font-weight: 400 !important;
+  text-transform: none !important;
+}
+
+/* Основной текст - MedievalSharp */
+p,
+span,
+div,
+section,
+article,
+main,
+aside,
+footer,
+.section-subtitle,
+.card-description,
+.card-details,
+.text-primary,
+.text-secondary,
+.text-muted {
+  font-family: 'MedievalSharp', 'Georgia', serif !important;
+}
+
+/* Навигация */
+.nav-link,
+.dropdown-item,
+.breadcrumb-item {
+  font-family: 'MedievalSharp', 'Georgia', serif !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.5px !important;
+}
+
+/* Кнопки и интерактивные элементы */
+.btn,
+.btn-potion,
+.btn-outline-potion,
+.card-button,
+.button,
+[type="button"],
+[type="submit"],
+[type="reset"] {
+  font-family: 'MedievalSharp', 'Georgia', serif !important;
+  font-weight: 700 !important;
+  letter-spacing: 1px !important;
+}
+
+/* Формы и ввод данных */
+.form-control,
+.form-select,
+.form-label,
+.form-text,
+input,
+textarea,
+select,
+option,
+label,
+fieldset,
+legend {
+  font-family: 'MedievalSharp', 'Georgia', serif !important;
+  font-size: 1.05rem !important;
+}
+
+/* Таблицы */
+.table,
+.table-dark th,
+.table-dark td,
+thead,
+tbody,
+tfoot,
+tr,
+th,
+td {
+  font-family: 'MedievalSharp', 'Georgia', serif !important;
+}
+
+/* Badges, метки и индикаторы */
+.badge,
+.badge-potion,
+.status-indicator,
+.category-tag,
+.card-badge,
+.alert,
+.toast {
+  font-family: 'MedievalSharp', 'Georgia', serif !important;
+  font-weight: 600 !important;
+}
+
+/* Модальные окна и уведомления */
+.modal-body,
+.modal-footer,
+.modal-header .modal-title,
+.alert,
+.tooltip,
+.popover {
+  font-family: 'MedievalSharp', 'Georgia', serif !important;
+}
+
+/* Списки */
+ul,
+ol,
+li,
+dl,
+dt,
+dd,
+.list-group,
+.list-group-item {
+  font-family: 'MedievalSharp', 'Georgia', serif !important;
+}
+
+/* Цены и числовые значения */
+.card-price,
+.price,
+.amount,
+.cost {
+  font-family: 'Cinzel Decorative', 'Georgia', serif !important;
+  font-weight: 700 !important;
+}
+
+/* ==========================================================================
+   Фоновые стили для страниц
+   ========================================================================== */
+
+/* Общий фон для всех страниц */
+.page-background {
+  position: relative;
+  min-height: 100vh;
+  background: 
+    linear-gradient(
+      rgba(10, 0, 20, 0.85),
+      rgba(20, 0, 40, 0.9)
+    ),
+    url('/src/images/background.jpg') center/cover no-repeat fixed;
+  z-index: 0;
+}
+
+.page-background::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(circle at 30% 40%, rgba(157, 78, 221, 0.15) 0%, transparent 40%),
+    radial-gradient(circle at 70% 60%, rgba(199, 125, 255, 0.1) 0%, transparent 40%);
+  z-index: -1;
+}
+
+/* Главная страница */
+.home-page-background {
+  position: relative;
+  min-height: 100vh;
+  background: 
+    linear-gradient(
+      rgba(10, 0, 20, 0.7),
+      rgba(20, 0, 40, 0.85)
+    ),
+    url('/src/images/potion_shop.webp') center/cover no-repeat fixed;
+}
+
+.home-page-hero {
+  position: relative;
+  padding: 120px 0;
+  background: 
+    linear-gradient(
+      rgba(10, 0, 20, 0.4),
+      rgba(20, 0, 40, 0.6)
+    ),
+    url('/src/images/potion_shop.jpg') center/cover no-repeat fixed;
+  border-bottom: 3px solid var(--potion-purple);
+  text-shadow: 3px 3px 12px rgba(0, 0, 0, 0.9);
+}
+
+/* Страница зелий */
+.potions-page-background {
+  position: relative;
+  min-height: 100vh;
+  background: 
+    linear-gradient(
+      rgba(10, 0, 20, 0.75),
+      rgba(20, 0, 40, 0.9)
+    ),
+    url('/src/images/potions.webp') center/cover no-repeat fixed;
+}
+
+/* ==========================================================================
+   Кастомные цвета Bootstrap
+   ========================================================================== */
+
+.bg-dark-purple { background-color: var(--dark-purple) !important; }
+.bg-moonlight { background-color: #2d004d !important; }
+.bg-potioneer { background-color: #3a0066 !important; }
+.bg-glass { background: var(--glass-bg) !important; backdrop-filter: blur(10px); }
+.bg-transparent-dark { background-color: rgba(26, 0, 51, 0.9) !important; }
+
+.text-potion { color: var(--potion-purple) !important; }
+.text-moonlight { color: var(--moonlight) !important; }
+.text-primary { color: var(--text-primary) !important; }
+.text-secondary { color: var(--text-secondary) !important; }
+.text-muted { color: var(--text-muted) !important; }
+
+.border-potion { border-color: var(--potion-purple) !important; }
+.border-glass { border-color: var(--glass-border) !important; }
+
+/* ==========================================================================
+   Категории зелий
+   ========================================================================== */
+
+.potion-physical { border-left: 4px solid var(--blood-red) !important; }
+.potion-mental { border-left: 4px solid #4dffea !important; }
+.potion-healing { border-left: 4px solid var(--dragon-green) !important; }
+.potion-transformative { border-left: 4px solid var(--phoenix-orange) !important; }
+.potion-protective { border-left: 4px solid var(--crystal-blue) !important; }
+.potion-combat { border-left: 4px solid #f72585 !important; }
+.potion-poison { border-left: 4px solid var(--blood-red) !important; }
+
+/* ==========================================================================
+   Кнопки
+   ========================================================================== */
+
+.btn-potion {
+  background: linear-gradient(135deg, var(--potion-purple) 0%, #5a189a 100%);
+  border: 1px solid var(--potion-purple);
+  color: white;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-potion::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.7s;
+}
+
+.btn-potion:hover::before {
+  left: 100%;
+}
+
+.btn-potion:hover {
+  background: linear-gradient(135deg, var(--moonlight) 0%, var(--potion-purple) 100%);
+  color: white;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(157, 78, 221, 0.5);
+}
+
+.btn-outline-potion {
+  border: 2px solid var(--potion-purple);
+  color: var(--potion-purple);
+  transition: all 0.3s ease;
+  background: transparent;
+}
+
+.btn-outline-potion:hover {
+  background: linear-gradient(135deg, var(--potion-purple) 0%, #5a189a 100%);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(157, 78, 221, 0.3);
+}
+
+/* ==========================================================================
+   Карточки
+   ========================================================================== */
+
+/* Основная карточка */
+.potion-card {
+  background: linear-gradient(145deg, rgba(45, 0, 77, 0.8) 0%, rgba(26, 0, 51, 0.9) 100%);
+  border: 1px solid rgba(74, 0, 114, 0.3);
+  border-radius: 20px;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(10px);
+  overflow: hidden;
+}
+
+.potion-card:hover {
+  transform: translateY(-12px);
+  box-shadow: 0 20px 40px rgba(157, 78, 221, 0.4);
+  border-color: var(--moonlight);
+}
+
+/* Стеклянный эффект */
+.glass-effect {
+  background: rgba(26, 0, 51, 0.7);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(157, 78, 221, 0.2);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+}
+
+.content-overlay {
+  background-color: rgba(26, 0, 51, 0.75);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(157, 78, 221, 0.25);
+  border-radius: 20px;
+  padding: 35px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7);
+}
+
+/* ==========================================================================
+   Навигация
+   ========================================================================== */
+
+.navbar-dark {
+  background: linear-gradient(135deg, rgba(26, 0, 51, 0.95) 0%, rgba(10, 10, 42, 0.95) 100%);
+  border-bottom: 2px solid var(--potion-purple);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  padding: 15px 0;
+  transition: all 0.3s ease;
+}
+
+.navbar-dark.scrolled {
+  padding: 10px 0;
+  background: linear-gradient(135deg, rgba(26, 0, 51, 0.98) 0%, rgba(10, 10, 42, 0.98) 100%);
+}
+
+.navbar-brand {
+  font-size: 1.8rem;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+}
+
+.navbar-brand:hover {
+  transform: scale(1.05);
+}
+
+.nav-link {
+  position: relative;
+  padding: 10px 15px !important;
+  margin: 0 5px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.nav-link:hover {
+  background: rgba(157, 78, 221, 0.1);
+  transform: translateY(-2px);
+}
+
+.nav-link.active {
+  background: linear-gradient(135deg, var(--potion-purple) 0%, #5a189a 100%);
+  color: white !important;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: var(--potion-purple);
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+}
+
+.nav-link:hover::after {
+  width: 80%;
+}
+
+/* ==========================================================================
+   Формы
+   ========================================================================== */
+
+.form-control {
+  background-color: rgba(26, 0, 51, 0.8);
+  border: 1px solid rgba(74, 0, 114, 0.5);
+  color: var(--text-primary);
+  transition: all 0.3s ease;
+  backdrop-filter: blur(5px);
+}
+
+.form-control:focus {
+  background-color: rgba(45, 0, 77, 0.9);
+  border-color: var(--potion-purple);
+  color: var(--text-primary);
+  box-shadow: 0 0 0 0.25rem rgba(157, 78, 221, 0.25);
+  transform: translateY(-2px);
+  backdrop-filter: blur(10px);
+}
+
+.form-select {
+  background-color: rgba(26, 0, 51, 0.8);
+  border: 1px solid rgba(74, 0, 114, 0.5);
+  color: var(--text-primary);
+  backdrop-filter: blur(5px);
+}
+
+.form-select:focus {
+  border-color: var(--potion-purple);
+  box-shadow: 0 0 0 0.25rem rgba(157, 78, 221, 0.25);
+}
+
+select option {
+  background-color: rgba(90, 29, 151, 0.95) !important;
+  color: var(--text-primary) !important;
+  padding: 8px 12px !important;
+}
+
+/* ==========================================================================
+   Таблицы
+   ========================================================================== */
+
+.table-dark {
+  background-color: rgba(26, 0, 51, 0.8);
+  backdrop-filter: blur(5px);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.table-dark th {
+  background: linear-gradient(135deg, var(--potion-purple) 0%, #5a189a 100%);
+  color: white;
+  border: none;
+}
+
+.table-dark td {
+  border-color: rgba(74, 0, 114, 0.3);
+  vertical-align: middle;
+}
+
+.table-dark tr:hover {
+  background-color: rgba(157, 78, 221, 0.1);
+  transition: all 0.3s ease;
+}
+
+/* ==========================================================================
+   Badges
+   ========================================================================== */
+
+.badge-potion {
+  background: linear-gradient(135deg, var(--potion-purple) 0%, #5a189a 100%);
+  color: white;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  border: 1px solid var(--potion-purple);
+}
+
+/* ==========================================================================
+   Сетка в стиле Rick and Morty
+   ========================================================================== */
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 30px;
+  padding: 25px 0;
+}
+
+.grid-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 16px;
+  background: linear-gradient(145deg, rgba(45, 0, 77, 0.85) 0%, rgba(26, 0, 51, 0.95) 100%);
+  border: 2px solid var(--potion-purple);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(10px);
+}
+
+.grid-item:hover {
+  transform: translateY(-10px) scale(1.03);
+  box-shadow: 0 25px 50px rgba(157, 78, 221, 0.5);
+  border-color: var(--moonlight);
+}
+
+/* ==========================================================================
+   Карточки персонажей (стиль Rick and Morty)
+   ========================================================================== */
+
+.character-card {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-image-wrapper {
+  position: relative;
+  width: 100%;
+  height: 250px;
+  overflow: hidden;
+  background: linear-gradient(to bottom, rgba(45, 0, 77, 0.6), rgba(26, 0, 51, 0.9));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(5px);
+}
+
+.card-image {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.grid-item:hover .card-image {
+  transform: scale(1.15);
+}
+
+.card-badge {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  z-index: 2;
+  font-size: 0.8rem;
+  padding: 8px 16px;
+  border-radius: 25px;
+  font-weight: bold;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+}
+
+.card-content {
+  padding: 25px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(to bottom, rgba(45, 0, 77, 0.3), rgba(26, 0, 51, 0.8));
+}
+
+.card-title {
+  font-size: 1.4rem;
+  margin-bottom: 15px;
+  color: var(--moonlight);
+  text-shadow: 0 3px 8px rgba(0, 0, 0, 0.9);
+  line-height: 1.3;
+}
+
+.card-description {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: 20px;
+  flex-grow: 1;
+}
+
+.card-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.card-details i {
+  margin-right: 8px;
+  font-size: 1.1rem;
+}
+
+.card-price {
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: var(--potion-purple);
+  text-shadow: 0 3px 8px rgba(0, 0, 0, 0.9);
+  margin: 10px 0;
+}
+
+.card-button {
+  width: 100%;
+  padding: 14px;
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-size: 1rem;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.card-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* ==========================================================================
+   Индикаторы статуса
+   ========================================================================== */
+
+.status-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(5px);
+  border: 1px solid;
+  transition: all 0.3s ease;
+}
+
+.status-indicator:hover {
+  transform: scale(1.05);
+}
+
+.status-alive { 
+  background-color: rgba(56, 176, 0, 0.25); 
+  color: #38b000; 
+  border-color: #38b000; 
+}
+.status-dead { 
+  background-color: rgba(106, 4, 15, 0.25); 
+  color: #ff6b6b; 
+  border-color: #ff6b6b; 
+}
+.status-unknown { 
+  background-color: rgba(108, 117, 125, 0.25); 
+  color: #8a8ac4; 
+  border-color: #8a8ac4; 
+}
+.status-in-stock { 
+  background-color: rgba(56, 176, 0, 0.25); 
+  color: #38b000; 
+  border-color: #38b000; 
+}
+.status-out-of-stock { 
+  background-color: rgba(255, 158, 0, 0.25); 
+  color: #ff9e00; 
+  border-color: #ff9e00; 
+}
+
+/* ==========================================================================
+   Метки категорий
+   ========================================================================== */
+
+.category-tag {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  z-index: 2;
+  padding: 8px 18px;
+  border-radius: 25px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  background-color: rgba(26, 0, 51, 0.9);
+  backdrop-filter: blur(12px);
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+  border: 1px solid rgba(157, 78, 221, 0.3);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+  transition: all 0.3s ease;
+}
+
+.category-tag:hover {
+  transform: scale(1.05);
+  border-color: var(--potion-purple);
+}
+
+/* ==========================================================================
+   Типографика
+   ========================================================================== */
+
+.section-title {
+  font-size: 2.8rem;
+  color: var(--potion-purple);
+  margin-bottom: 2.5rem;
+  text-align: center;
+  position: relative;
+  text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.9);
+}
+
+.section-title::after {
+  content: '';
+  position: absolute;
+  bottom: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 5px;
+  background: linear-gradient(90deg, var(--potion-purple), var(--moonlight), var(--potion-purple));
+  border-radius: 3px;
+  box-shadow: 0 4px 15px rgba(157, 78, 221, 0.5);
+}
+
+.section-subtitle {
+  font-size: 1.3rem;
+  color: var(--moonlight);
+  text-align: center;
+  margin-bottom: 3.5rem;
+  max-width: 850px;
+  margin-left: auto;
+  margin-right: auto;
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.8);
+  line-height: 1.6;
+}
+
+.display-1,
+.display-2,
+.display-3,
+.display-4,
+.display-5,
+.display-6 {
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
+}
+
+.text-over-background {
+  text-shadow: 3px 3px 12px rgba(0, 0, 0, 1);
+}
+
+/* ==========================================================================
+   Анимации
+   ========================================================================== */
+
+@keyframes glow {
+  0%, 100% { 
+    box-shadow: 0 0 10px rgba(157, 78, 221, 0.6),
+                0 0 20px rgba(157, 78, 221, 0.4); 
+  }
+  50% { 
+    box-shadow: 0 0 25px rgba(157, 78, 221, 0.9),
+                0 0 40px rgba(157, 78, 221, 0.6); 
+  }
+}
+
+.glow-effect {
+  animation: glow 3s infinite ease-in-out;
+}
+
+@keyframes float {
+  0%, 100% { 
+    transform: translateY(0) rotate(0deg); 
+  }
+  50% { 
+    transform: translateY(-15px) rotate(2deg); 
+  }
+}
+
+.float-effect {
+  animation: float 4s infinite ease-in-out;
+}
+
+@keyframes pulse {
+  0%, 100% { 
+    opacity: 1; 
+  }
+  50% { 
+    opacity: 0.7; 
+  }
+}
+
+.pulse-effect {
+  animation: pulse 2s infinite ease-in-out;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.slide-in {
+  animation: slideIn 0.6s ease-out forwards;
+}
+
+/* ==========================================================================
+   Эффекты свечения
+   ========================================================================== */
+
+.glow-border {
+  border: 2px solid var(--potion-purple);
+  box-shadow: 
+    0 0 20px rgba(157, 78, 221, 0.6),
+    inset 0 0 20px rgba(157, 78, 221, 0.2);
+  position: relative;
+}
+
+.glow-border::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, var(--potion-purple), var(--moonlight), var(--potion-purple));
+  border-radius: inherit;
+  z-index: -1;
+  animation: glow 3s infinite linear;
+}
+
+/* ==========================================================================
+   Секции
+   ========================================================================== */
+
+.section-with-bg {
+  position: relative;
+  padding: 70px 0;
+  border-radius: 20px;
+  margin: 40px 0;
+}
+
+.section-with-bg::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(26, 0, 51, 0.85);
+  backdrop-filter: blur(15px);
+  z-index: -1;
+  border-radius: inherit;
+  border: 1px solid rgba(157, 78, 221, 0.3);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7);
+}
+
+/* ==========================================================================
+   Прогресс бары и индикаторы
+   ========================================================================== */
+
+.progress {
+  height: 25px;
+  background-color: rgba(26, 0, 51, 0.5);
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(74, 0, 114, 0.3);
+}
+
+.progress-bar {
+  background: linear-gradient(90deg, var(--potion-purple), var(--moonlight));
+  border-radius: 12px;
+  transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.progress-bar::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* ==========================================================================
+   Специальные эффекты для готических шрифтов
+   ========================================================================== */
+
+/* Эффект старинного текста */
+.gothic-text-shadow {
+  text-shadow: 
+    2px 2px 3px rgba(0, 0, 0, 0.8),
+    0 0 5px rgba(157, 78, 221, 0.4),
+    0 0 10px rgba(199, 125, 255, 0.2);
+}
+
+/* Заголовки с градиентом */
+.gothic-gradient {
+  background: linear-gradient(45deg, 
+    var(--potion-purple) 30%, 
+    var(--moonlight) 70%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Буквицы для параграфов */
+p.drop-cap::first-letter {
+  font-family: 'UnifrakturMaguntia', serif !important;
+  font-size: 3.5em !important;
+  float: left !important;
+  line-height: 0.8 !important;
+  margin-right: 10px !important;
+  margin-top: 5px !important;
+  color: var(--potion-purple) !important;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Эффект пергамента */
+.parchment-effect {
+  background: linear-gradient(to bottom, 
+    rgba(245, 222, 179, 0.1) 0%,
+    rgba(210, 180, 140, 0.05) 100%);
+  padding: 15px 20px;
+  border-radius: 5px;
+  border-left: 3px solid #8b4513;
+  border-right: 3px solid #8b4513;
+}
+
+/* Стиль для логотипа с UnifrakturMaguntia */
+.logo-unifraktur {
+  font-family: 'UnifrakturMaguntia', serif !important;
+  font-size: 2.5rem !important;
+  letter-spacing: 3px !important;
+  color: var(--potion-purple) !important;
+  text-shadow: 
+    0 0 10px rgba(157, 78, 221, 0.7),
+    0 0 20px rgba(157, 78, 221, 0.4);
+}
+
+/* ==========================================================================
+   Стили для поиска
+   ========================================================================== */
+
+.form-control.bg-transparent {
+  color: var(--text-primary) !important;
+}
+
+.form-control::placeholder {
+  color: var(--text-secondary) !important;
+  opacity: 0.8;
+}
+
+.form-control:focus::placeholder {
+  opacity: 0.5;
+}
+
+/* Более специфичное правило для поля поиска */
+input.form-control.bg-transparent.border-potion {
+  color: var(--text-primary) !important;
+  border-color: var(--potion-purple) !important;
+}
+
+/* Убедимся, что placeholder виден */
+input.form-control.bg-transparent.border-potion::placeholder {
+  color: var(--text-secondary) !important;
+  opacity: 0.9;
+}
+
+/* ==========================================================================
+   Стили для select и option
+   ========================================================================== */
+
+select option {
+  background-color: rgba(10, 0, 20, 0.95) !important;
+  color: var(--text-primary) !important;
+  padding: 8px 12px !important;
+}
+
+select option:hover {
+  background-color: rgba(157, 78, 221, 0.3) !important;
+}
+
+select option:checked,
+select option:focus {
+  background: linear-gradient(135deg, var(--potion-purple) 0%, #5a189a 100%) !important;
+  color: white !important;
+}
+
+/* Для улучшенного select */
+select.form-select option {
+  background-color: rgba(26, 0, 51, 0.95) !important;
+}
+
+select.form-select option:hover {
+  background-color: rgba(157, 78, 221, 0.4) !important;
+}
+
+/* ==========================================================================
+   Скроллбар
+   ========================================================================== */
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--dark-purple);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, var(--potion-purple), var(--moonlight));
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, var(--moonlight), var(--potion-purple));
+}
+
+/* ==========================================================================
+   Загрузка
+   ========================================================================== */
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 300px;
+}
+
+.loading-spinner {
+  width: 50px;
+  height: 50px;
+  border: 4px solid rgba(157, 78, 221, 0.3);
+  border-top: 4px solid var(--potion-purple);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* ==========================================================================
+   Футер
+   ========================================================================== */
+
+footer {
+  background: linear-gradient(135deg, rgba(26, 0, 51, 0.95) 0%, rgba(10, 10, 42, 0.95) 100%);
+  border-top: 2px solid var(--potion-purple);
+  backdrop-filter: blur(10px);
+  margin-top: auto;
+}
+
+footer a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+footer a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--potion-purple);
+  transition: width 0.3s ease;
+}
+
+footer a:hover {
+  color: var(--moonlight);
+}
+
+footer a:hover::after {
+  width: 100%;
+}
+
+/* ==========================================================================
+   Модальные окна
+   ========================================================================== */
+
+.modal-content {
+  background: linear-gradient(145deg, rgba(45, 0, 77, 0.95) 0%, rgba(26, 0, 51, 0.98) 100%);
+  backdrop-filter: blur(20px);
+  border: 2px solid var(--potion-purple);
+  border-radius: 20px;
+  color: var(--text-primary);
+}
+
+.modal-header {
+  border-bottom: 1px solid rgba(157, 78, 221, 0.3);
+  background: linear-gradient(135deg, var(--potion-purple) 0%, #5a189a 100%);
+  border-radius: 18px 18px 0 0;
+  color: white;
+}
+
+.modal-footer {
+  border-top: 1px solid rgba(157, 78, 221, 0.3);
+  background: rgba(26, 0, 51, 0.8);
+  border-radius: 0 0 18px 18px;
+}
+
+/* ==========================================================================
+   Уведомления
+   ========================================================================== */
+
+.alert {
+  backdrop-filter: blur(10px);
+  border: 1px solid;
+  border-radius: 12px;
+  padding: 15px 20px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+}
+
+.alert-success {
+  background: rgba(56, 176, 0, 0.2);
+  border-color: #38b000;
+  color: #38b000;
+}
+
+.alert-danger {
+  background: rgba(106, 4, 15, 0.2);
+  border-color: #ff6b6b;
+  color: #ff6b6b;
+}
+
+.alert-warning {
+  background: rgba(255, 158, 0, 0.2);
+  border-color: #ff9e00;
+  color: #ff9e00;
+}
+
+.alert-info {
+  background: rgba(13, 110, 253, 0.2);
+  border-color: #0d6efd;
+  color: #0d6efd;
+}
+
+/* ==========================================================================
+   Переполнение текста
+   ========================================================================== */
+
+.text-truncate-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.text-truncate-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ==========================================================================
+   Выделение
+   ========================================================================== */
+
+::selection {
+  background: rgba(157, 78, 221, 0.5);
+  color: white;
+}
+
+::-moz-selection {
+  background: rgba(157, 78, 221, 0.5);
+  color: white;
+}
+
+/* ==========================================================================
+   Фокус для доступности
+   ========================================================================== */
+
+*:focus {
+  outline: 2px solid var(--potion-purple);
+  outline-offset: 2px;
+}
+
+*:focus:not(.focus-visible) {
+  outline: none;
+}
+
+/* ==========================================================================
+   Печать
+   ========================================================================== */
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  
+  body {
+    background: white;
+    color: black;
+  }
+  
+  .potion-card,
+  .grid-item,
+  .content-overlay {
+    box-shadow: none;
+    border: 1px solid #ddd;
+    background: white;
+    color: black;
+  }
+}
+
+/* ==========================================================================
+   Адаптивность
+   ========================================================================== */
+
+@media (max-width: 1400px) {
+  .grid-container {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  }
+}
+
+@media (max-width: 1200px) {
+  .section-title {
+    font-size: 2.4rem;
+  }
+  
+  .section-subtitle {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 992px) {
+  .navbar-nav {
+    text-align: center;
+    padding: 10px 0;
+  }
+  
+  .nav-link {
+    margin: 5px 0;
+  }
+  
+  .grid-container {
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 25px;
+  }
+  
+  .section-title {
+    font-size: 2.2rem;
+  }
+  
+  .card-image-wrapper {
+    height: 220px;
+  }
+}
+
+@media (max-width: 768px) {
+  body {
+    font-size: 0.95rem;
+  }
+  
+  .home-page-hero,
+  .section-with-bg {
+    padding: 50px 0;
+  }
+  
+  .grid-container {
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 20px;
+    padding: 15px;
+  }
+  
+  .section-title {
+    font-size: 2rem;
+    letter-spacing: 1.5px;
+  }
+  
+  .section-title::after {
+    width: 80px;
+    height: 4px;
+    bottom: -12px;
+  }
+  
+  .section-subtitle {
+    font-size: 1.1rem;
+    margin-bottom: 2.5rem;
+  }
+  
+  .card-image-wrapper {
+    height: 200px;
+  }
+  
+  .card-content {
+    padding: 20px;
+  }
+  
+  .content-overlay {
+    padding: 25px;
+  }
+  
+  .gothic-majestic,
+  .logo-unifraktur {
+    font-size: 2rem !important;
+  }
+}
+
+@media (max-width: 576px) {
+  .grid-container {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 10px;
+  }
+  
+  .section-title {
+    font-size: 1.8rem;
+    letter-spacing: 1px;
+  }
+  
+  .section-subtitle {
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+  
+  .card-image-wrapper {
+    height: 180px;
+  }
+  
+  .card-title {
+    font-size: 1.2rem;
+  }
+  
+  .card-price {
+    font-size: 1.4rem;
+  }
+  
+  .content-overlay {
+    padding: 20px;
+  }
+  
+  .home-page-hero {
+    padding: 40px 0;
+  }
+  
+  .btn-lg {
+    padding: 12px 24px;
+    font-size: 1rem;
+  }
+  
+  .gothic-majestic,
+  .logo-unifraktur {
+    font-size: 1.8rem !important;
+    letter-spacing: 2px !important;
+  }
+}
+
+@media (max-width: 400px) {
+  .section-title {
+    font-size: 1.6rem;
+  }
+  
+  .grid-container {
+    padding: 5px;
+  }
+  
+  .card-content {
+    padding: 15px;
+  }
+  
+  .navbar-brand {
+    font-size: 1.5rem !important;
+  }
+}
+
+/* ==========================================================================
+   Утилиты
+   ========================================================================== */
+
+.pointer {
+  cursor: pointer;
+}
+
+.rounded-lg {
+  border-radius: 20px;
+}
+
+.rounded-xl {
+  border-radius: 30px;
+}
+
+.shadow-deep {
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7);
+}
+
+.shadow-deeper {
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8);
+}
+
+.z-1 { z-index: 1; }
+.z-2 { z-index: 2; }
+.z-3 { z-index: 3; }
+
+.transition-all {
+  transition: all 0.3s ease;
+}
+
+.transition-transform {
+  transition: transform 0.3s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-5px);
+}
+
+.hover-grow:hover {
+  transform: scale(1.05);
+}
+
+/* ==========================================================================
+   Специальные эффекты
+   ========================================================================== */
+
+.parallax {
+  background-attachment: fixed;
+}
+
+.no-parallax {
+  background-attachment: scroll;
+}
+
+.text-gradient {
+  background: linear-gradient(90deg, var(--potion-purple), var(--moonlight));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.bg-gradient {
+  background: linear-gradient(135deg, var(--potion-purple) 0%, var(--moonlight) 100%);
+}
+
+/* ==========================================================================
+   Утилиты для готического стиля
+   ========================================================================== */
+
+.text-gothic {
+  font-family: 'Cinzel Decorative', 'Georgia', serif !important;
+}
+
+.text-gothic-bold {
+  font-family: 'Cinzel Decorative', 'Georgia', serif !important;
+  font-weight: 900 !important;
+}
+
+.text-gothic-body {
+  font-family: 'MedievalSharp', 'Georgia', serif !important;
+}
+
+.letter-spacing-wide {
+  letter-spacing: 2px !important;
+}
+
+.letter-spacing-wider {
+  letter-spacing: 3px !important;
+}
+
+/* ==========================================================================
+   Гарантированное применение шрифтов для динамического контента
+   ========================================================================== */
+
+/* Принудительное применение шрифтов для всех вновь созданных элементов */
+#root * {
+  font-family: inherit !important;
+}
+
+/* Явное указание для часто используемых классов Bootstrap */
+.bootstrap-font-fix {
+  font-family: 'MedievalSharp', 'Georgia', serif !important;
+}
+
+/* Принудительный сброс для элементов, которые могут игнорировать наследование */
+input, textarea, select, button, optgroup, option {
+  font-family: 'MedievalSharp', 'Georgia', serif !important;
+}

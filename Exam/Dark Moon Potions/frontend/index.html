@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- Мета-теги для совместимости -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="referrer" content="no-referrer">
+    
+    <title>Dark Moon Potions - Интернет-магазин магических зелий</title>
+    
+    <!-- Предподключение для быстрой загрузки шрифтов -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Все готические шрифты -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=MedievalSharp&family=UnifrakturMaguntia&display=swap" 
+          rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" 
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" 
+          rel="stylesheet">
+    
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" 
+          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    
+    <!-- Наш основной CSS -->
+    <link rel="stylesheet" href="index.css">
+    
+    <!-- Встроенные стили с UnifrakturMaguntia -->
+    <style>
+        /* Базовый шрифт для всего */
+        body {
+            font-family: 'MedievalSharp', cursive, sans-serif !important;
+            font-display: swap;
+        }
+        
+        /* Все обычные заголовки - Cinzel Decorative */
+        h1, h2, h3, h4, h5, h6,
+        .h1, .h2, .h3, .h4, .h5, .h6,
+        .navbar-brand,
+        .section-title,
+        .card-title,
+        .modal-title {
+            font-family: 'Cinzel Decorative', cursive, serif !important;
+        }
+        
+        /* UnifrakturMaguntia для особо важных/готических заголовков */
+        .gothic-title,
+        .gothic-majestic,
+        .logo-text,
+        .display-1,
+        .display-2,
+        .special-header {
+            font-family: 'UnifrakturMaguntia', cursive, serif !important;
+            letter-spacing: 1.5px;
+        }
+        
+        /* Особые элементы */
+        .btn, 
+        .form-control, 
+        .form-select,
+        .badge,
+        .alert,
+        .nav-link,
+        .table,
+        .status-indicator {
+            font-family: 'MedievalSharp', cursive, sans-serif !important;
+        }
+        
+        /* Принудительно для всех остальных элементов */
+        * {
+            font-family: inherit;
+        }
+        
+        /* Улучшение читаемости */
+        body {
+            text-rendering: optimizeLegibility;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        /* Специальные эффекты для UnifrakturMaguntia */
+        .unifraktur-text {
+            font-family: 'UnifrakturMaguntia', serif !important;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+            color: var(--potion-purple);
+        }
+        
+        .unifraktur-text:hover {
+            text-shadow: 0 0 10px rgba(157, 78, 221, 0.8);
+            transition: text-shadow 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <!-- Контейнер для React приложения -->
+    <div id="root"></div>
+    
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Простой скрипт для применения шрифтов -->
+    <script>
+        // Применяем шрифты ко всем новым элементам
+        function applyGothicFonts(element = document.body) {
+            if (!element || element.nodeType !== 1) return;
+            
+            const tagName = element.tagName.toLowerCase();
+            
+            // Для элементов с классами для UnifrakturMaguntia
+            if (element.classList && (
+                element.classList.contains('gothic-title') ||
+                element.classList.contains('gothic-majestic') ||
+                element.classList.contains('unifraktur-text') ||
+                element.classList.contains('display-1') ||
+                element.classList.contains('display-2') ||
+                element.classList.contains('display-3') ||
+                element.classList.contains('display-4') ||
+                element.classList.contains('display-5') ||
+                element.classList.contains('display-6')
+            )) {
+                element.style.fontFamily = "'UnifrakturMaguntia', serif";
+            }
+            // Для обычных заголовков
+            else if (['h1','h2','h3','h4','h5','h6'].includes(tagName)) {
+                element.style.fontFamily = "'Cinzel Decorative', serif";
+            }
+            // Для всего остального
+            else if (!['script','style','link','meta'].includes(tagName)) {
+                element.style.fontFamily = "'MedievalSharp', sans-serif";
+            }
+            
+            // Рекурсивно для дочерних элементов
+            element.childNodes.forEach(child => applyGothicFonts(child));
+        }
+        
+        // Наблюдатель за изменениями DOM
+        const observer = new MutationObserver((mutations) => {
+            mutations.forEach((mutation) => {
+                mutation.addedNodes.forEach(node => applyGothicFonts(node));
+            });
+        });
+        
+        // Запуск после загрузки DOM
+        document.addEventListener('DOMContentLoaded', () => {
+            applyGothicFonts();
+            
+            observer.observe(document.body, {
+                childList: true,
+                subtree: true
+            });
+            
+            console.log('Шрифты UnifrakturMaguntia и другие готические шрифты загружены');
+        });
+    </script>
+    
+    <!-- Основной скрипт приложения -->
+    <script type="module" src="/src/main.tsx"></script>
+</body>
+</html>
